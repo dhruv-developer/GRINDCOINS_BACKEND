@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 python-multipart
-opencv-python
+opencv-python-headless
 xgboost==1.6.2
 pandas
 numpy
