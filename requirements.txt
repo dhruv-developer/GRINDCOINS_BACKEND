@@ -3,10 +3,10 @@ uvicorn
 python-multipart
 opencv-python-headless
 xgboost==1.6.2
-pandas
+scikit-learn
 numpy
+pandas
 mediapipe
 joblib
-scikit-learn
-mtcnn
 setuptools>=68.0.0
+mtcnn
