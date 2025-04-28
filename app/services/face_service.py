@@ -1,6 +1,6 @@
 import io
 from app.db.mongodb import faces_collection
-from app.face_utils import extract_face, get_embedding, find_match
+from backy.app.face_utils import extract_face, get_embedding, find_match
 from fastapi import UploadFile
 import numpy as np
 

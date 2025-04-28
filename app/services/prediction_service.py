@@ -1,35 +1,40 @@
-import shutil
-import uuid
-import os
+# app/services/prediction_service.py
+
+from xgboost import Booster
 import numpy as np
+import pandas as pd
 import joblib
-from app.pose_utils import extract_keypoints_from_video
+from sklearn.preprocessing import LabelEncoder
 
-# Load model once
-model_data = joblib.load("app/model.pkl")
-model = model_data["model"]
+# Load XGBoost model safely
+from xgboost import XGBClassifier
 
-async def predict_posture_from_video(file):
-    if file.content_type != "video/mp4":
-        return {"error": "Only MP4 videos are supported"}
+# Step 1: Load the .pkl file
+obj = joblib.load("app/model.pkl")  # or "./app/model.pkl" depending on structure
 
-    temp_video_path = f"temp_{uuid.uuid4().hex}.mp4"
-    with open(temp_video_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+# Step 2: Extract components
+model: XGBClassifier = obj['model']
+label_encoder: LabelEncoder = obj['label_encoder']
 
-    try:
-        keypoints = extract_keypoints_from_video(temp_video_path)
-        if keypoints is None:
-            return {"error": "No keypoints detected"}
+# Now you can define your function
 
-        pred_proba = model.predict_proba([keypoints])[0]
-        pred_index = np.argmax(pred_proba)
-        prediction = model.classes_[pred_index]
-        confidence = round(float(pred_proba[pred_index]) * 100, 2)
+def predict_posture_from_video(features: np.ndarray) -> str:
+    """
+    Given extracted video features, predict the posture class.
 
-        return {
-            "posture": str(prediction),
-            "confidence_percent": confidence
-        }
-    finally:
-        os.remove(temp_video_path)
+    Args:
+        features (np.ndarray): Input feature vector.
+
+    Returns:
+        str: Predicted posture label.
+    """
+    # Reshape features properly
+    features = features.reshape(1, -1)  # Make it 2D for prediction
+
+    # Predict label
+    pred = model.predict(features)
+
+    # Decode label back to original class name
+    predicted_label = label_encoder.inverse_transform(pred)[0]
+
+    return predicted_label
