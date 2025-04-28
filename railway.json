@@ -1,11 +1,28 @@
 {
-  "nixpacks": {
-    "phases": {
-      "setup": {
-        "nixPkgs": [
-          "mesa",
-          "glib"
-        ]
+  "build": {
+    "nixpacksPlan": {
+      "phases": {
+        "install": {
+          "nixPkgs": [
+            "mesa",
+            "libGL",
+            "libGLU",
+            "xorg.libX11",
+            "xorg.libXext",
+            "xorg.libXrender",
+            "xorg.libXrandr",
+            "xorg.libXcursor",
+            "xorg.libXcomposite",
+            "xorg.libXdamage",
+            "xorg.libXi",
+            "xorg.libXtst",
+            "xorg.libXScrnSaver",
+            "xorg.libXfixes",
+            "xorg.libxcb",
+            "xorg.libXau",
+            "xorg.libXdmcp"
+          ]
+        }
       }
     }
   }
