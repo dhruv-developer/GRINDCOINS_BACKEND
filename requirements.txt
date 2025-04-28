@@ -11,4 +11,4 @@ mediapipe
 joblib
 setuptools>=68.0.0
 mtcnn
-pymongo=4.12.0
+pymongo==4.12.0
