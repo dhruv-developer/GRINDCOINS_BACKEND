@@ -6,7 +6,7 @@ xgboost==2.1.4
 scikit-learn
 numpy
 pandas
-moviepy
+moviepy=1.0.3
 mediapipe
 joblib
 setuptools>=68.0.0
