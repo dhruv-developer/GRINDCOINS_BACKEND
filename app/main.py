@@ -1,5 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import os
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 # from app.routes.prediction_routes import router as prediction_router
 from app.routes.action_prediction_routes import router as action_router
