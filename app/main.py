@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routes.prediction_routes import router as prediction_router
+# from app.routes.prediction_routes import router as prediction_router
 from app.routes.action_prediction_routes import router as action_router
 from app.routes.face_routes import router as face_router
 from app.routes.auth_routes import router as auth_router
@@ -20,7 +20,7 @@ app.add_middleware(
 )
 
 # ✅ Now include routers
-app.include_router(prediction_router)
+# app.include_router(prediction_router)
 app.include_router(action_router)
 app.include_router(face_router)
 app.include_router(auth_router)
