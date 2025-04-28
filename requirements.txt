@@ -9,3 +9,4 @@ mediapipe
 joblib
 scikit-learn
 mtcnn
+setuptools>=68.0.0
