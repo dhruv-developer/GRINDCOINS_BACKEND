@@ -2,10 +2,11 @@ fastapi
 uvicorn
 python-multipart
 opencv-python-headless
-xgboost==1.4.2
+xgboost==2.1.4
 scikit-learn
 numpy
 pandas
+moviepy
 mediapipe
 joblib
 setuptools>=68.0.0
