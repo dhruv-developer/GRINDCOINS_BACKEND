@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-multipart
+opencv-python
+xgboost
+pandas
+numpy
+mediapipe
+joblib
