@@ -1,10 +1,9 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-# from app.routes.prediction_routes import router as prediction_router
 from app.routes.action_prediction_routes import router as action_router
 from app.routes.face_routes import router as face_router
 from app.routes.auth_routes import router as auth_router
@@ -23,9 +22,12 @@ app.add_middleware(
 )
 
 # ✅ Now include routers
-# app.include_router(prediction_router)
 app.include_router(action_router)
 app.include_router(face_router)
 app.include_router(auth_router)
 app.include_router(dashboard_router)
 app.include_router(goal_router)
+
+# Set random port for local use (for Docker or local development)
+port = os.getenv("PORT", 8000)  # Default to 8000 if no PORT environment variable is set
+print(f"Starting server on port {port}...")
